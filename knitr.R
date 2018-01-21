@@ -64,6 +64,7 @@ if(!file.exists(filename))
 #########
 require(knitr);
 require(markdown);
+require(rmarkdown);
 #########
 
 #########
@@ -71,7 +72,7 @@ knit(filename);
 if(isHTMLneeded || isPDFneeded)
 {
 	print("Generating HTML file...");
-	markdownToHTML(mdFile, htmlFile, options=c("use_xhml"));
+	render(filename);
 }
 if(isPDFneeded)
 {
@@ -83,5 +84,4 @@ if(isPDFneeded && !isHTMLneeded && file.exists(htmlFile))
 	print("Removing HTML file...");
 	system(sprintf("rm %s", htmlFile));
 }
-
 #########
